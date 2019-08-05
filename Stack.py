@@ -22,13 +22,3 @@ class Stack:
      while aux:
       print(aux.positionx, end ="->")
       aux = aux.next
-
-pila = Stack()
-pila.Push(1,2)
-pila.Push(2,1)
-pila.Push(3,1)
-pila.printlist()
-print('\n')
-pila.Pop()
-pila.printlist()
-print('\n')
