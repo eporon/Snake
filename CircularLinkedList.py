@@ -133,4 +133,5 @@ class CircularLinkedList:
             f_output.write("\t }")        
             f_output.close()
             os.system("C:/Users/Graphviz2.38/bin/neato.exe -Tpng "+rutadeubicacion+"\\Report_Users.txt -o"+rutadeubicacion+"\\Report_Users.png" )
+            os.system(rutadeubicacion+"\\Report_Users.png" )
 

@@ -49,7 +49,7 @@ def main(stdscr):
             if(current_row == 1): #ITEM SELECCIONADO PARA EL SCOREBOARD
                 pass
             if(current_row == 2): #ITEM SELECCIONADO PARA USER SELECTION
-                 menuuser =True
+                menuuser =True
                 print_users(stdscr, listuser.nextitem())
                 while menuuser:
                     opcionuser = stdscr.getch()
