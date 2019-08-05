@@ -8,10 +8,10 @@ class Queue:
     def __init__(self):
         self.head = None
 
-    def is_empty(self):
+    def is_empty(self): #Pregunta si esta vacia
         return self.head == None
 
-    def Enqueue(self, name,score):
+    def Enqueue(self, name,score): #Encola agregando al final
         if not self.head:
             self.head = node(name=name,score=score)
             return
@@ -20,26 +20,11 @@ class Queue:
             curr = curr.next
         curr.next = node(name=name,score=score)
 
-    def Dequeue(self):
+    def Dequeue(self): #Desencola de la cabeza
         self.head = self.head.next
 
-    def printlist(self):
+    def printlist(self): #Imprime la cola
      aux = self.head
      while aux:
       print(aux.score, end ="->")
       aux = aux.next
-
-
-
-cola = Queue()
-cola.Enqueue('Pedro',1)
-cola.Enqueue('Pedro',2)
-cola.Enqueue('Pedro',3)
-cola.Enqueue('Pedro',4)
-cola.Enqueue('Pedro',5)
-cola.printlist()
-print('\n')
-cola.Dequeue()
-cola.Enqueue('Pedro',6)
-cola.printlist()
-print('\n')

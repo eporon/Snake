@@ -14,25 +14,26 @@ class CircularLinkedList:
         self.last = None
         self.item = None
     
-    def nextitem(self):
+    def nextitem(self): #Devuelve el nombre siguiente al actual
         if self.item ==None:
             self.item = self.first
             return self.item.name
         else:
             self.item = self.item.next
             return self.item.name
-    def prioritem(self):
+
+    def prioritem(self): #Devuelve el nombre anterior al actual
         if self.item != None:
             self.item = self.item.prior
             return self.item.name
 
-    def is_Empty(self):
+    def is_Empty(self): #Verifica si esta vacia la lista
         if self.first ==None:
             return True
         else:
             return False
 
-    def add(self, name):
+    def add(self, name):  #Agrega el valor al inicio de la lista circular
         if self.is_Empty():
             self.first =self.last = node(name=name)
         else:
@@ -42,7 +43,9 @@ class CircularLinkedList:
             self.first =aux
         self.linknode()
 
-    def search(self,name):
+
+
+    def search(self,name): #Verifica si el usuario se encuentra en la lista
         aux = self.first
         while aux:
             if aux.name ==name:
@@ -52,7 +55,7 @@ class CircularLinkedList:
                 if aux == self.first:
                     return False
 
-    def add_last(self,name):
+    def add_last(self,name):  #Agrega el valor al final de la lista circular
         if self.is_Empty():
             self.first = self.last = node(name=name)
         else:
@@ -61,13 +64,13 @@ class CircularLinkedList:
             self.last.prior =aux
         self.linknode()
 
-    def linknode(self):
+    def linknode(self): #Une los nodos respecto 
         if self.first !=None:
             self.first.prior =self.last
             self.last.next =self.first
 
     
-    def startnode(self):
+    def startnode(self): #Imprime la lista desde el inicio
         aux = self.first
         while aux:
             print(aux.name)
@@ -75,7 +78,7 @@ class CircularLinkedList:
             if aux == self.first:
              break
     
-    def finishnode(self):
+    def finishnode(self): #Imprime la lista desde el final
         aux = self.last
         while aux:
             print(aux.name)
@@ -83,7 +86,7 @@ class CircularLinkedList:
             if aux == self.last:
              break
     
-    def deleteStart(self):
+    def deleteStart(self): #Elimina el nodo inicial
         if self.is_Empty():
             print("The data struct is empty")
         elif self.first == self.last:
@@ -92,7 +95,7 @@ class CircularLinkedList:
             self.first =self.first.next
         self.linknode()
 
-    def deleteFinish(self):
+    def deleteFinish(self): #Elimina el nodo Final
         if self.is_Empty():
             print("The data struct is empty")
         elif self.first == self.last:
@@ -101,7 +104,7 @@ class CircularLinkedList:
             self.last =self.last.prior
         self.linknode()
 
-    def Report_User(self):
+    def Report_User(self): #Genera el Archivo .dot para la lista circular doble enlazada y Genera la Imagen
             nodonum =0
             f_output = open(rutadeubicacion+'\\Report_Users.txt','w')
             f_output.write("digraph{\n node[shape = record,style=filled, color = lightgray];")
@@ -131,18 +134,3 @@ class CircularLinkedList:
             f_output.close()
             os.system("C:/Users/Graphviz2.38/bin/neato.exe -Tpng "+rutadeubicacion+"\\Report_Users.txt -o"+rutadeubicacion+"\\Report_Users.png" )
 
-
-'''
-lista = CircularLinkedList()
-
-
-lista.add_last('a')
-lista.add_last('e')
-lista.add_last('i')
-lista.add_last('o')
-lista.add_last('u')
-
-lista.startnode()
-print("*"*25)
-lista.finishnode()
-'''
