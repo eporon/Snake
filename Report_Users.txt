@@ -1,0 +1,23 @@
+digraph{
+ node[shape = record,style=filled, color = lightgray];label = "Circular Linked List of Users"; 
+
+		 d0[label="Pedro"];
+		 d1[label="Juan"];
+		 d2[label="Mario"];
+		 d3[label="Roberto"];
+		 d4[label="Cabezal"];
+		 d5[label="Papa"];
+{rank=samed0; d5;d1; d4;d2; d3;d3; d2;}
+		 d0->d1[color ="yellow1"];
+		 d1->d0[color ="yellow1"];
+		 d1->d2[color ="yellow1"];
+		 d2->d1[color ="yellow1"];
+		 d2->d3[color ="yellow1"];
+		 d3->d2[color ="yellow1"];
+		 d3->d4[color ="yellow1"];
+		 d4->d3[color ="yellow1"];
+		 d4->d5[color ="yellow1"];
+		 d5->d4[color ="yellow1"];
+		 d5->d0[color ="yellow1"];
+		 d0->d5[color ="yellow1"];
+	 }
