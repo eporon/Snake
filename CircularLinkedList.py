@@ -1,5 +1,6 @@
 import os
-rutadeubicacion = os.path.dirname(os.path.abspath(__file__))
+import Open_Files
+from Open_Files import open_file,start_file
 
 class node:
     def __init__(self,name=None,score=None,next=None,prior =None):
@@ -13,7 +14,7 @@ class CircularLinkedList:
         self.first = None
         self.last = None
         self.item = None
-    
+
     def nextitem(self): #Devuelve el nombre siguiente al actual
         if self.item ==None:
             self.item = self.first
@@ -106,7 +107,8 @@ class CircularLinkedList:
 
     def Report_User(self): #Genera el Archivo .dot para la lista circular doble enlazada y Genera la Imagen
             nodonum =0
-            f_output = open(rutadeubicacion+'\\Report_Users.txt','w')
+            #f_output = open(rutadeubicacion+'\\Report_Users.txt','w')
+            f_output = open('Report_Users.txt','w')
             f_output.write("digraph{\n node[shape = record,style=filled, color = lightgray];")
             f_output.write("label = \"Circular Linked List of Users\"; \n")
             f_output.write("\n")
@@ -132,6 +134,8 @@ class CircularLinkedList:
                     f_output.write("\t\t d%d->d%d[color =\"yellow1\"];\n"%(i+1,i))    
             f_output.write("\t }")        
             f_output.close()
-            os.system("C:/Users/Graphviz2.38/bin/neato.exe -Tpng "+rutadeubicacion+"\\Report_Users.txt -o"+rutadeubicacion+"\\Report_Users.png" )
-            os.system(rutadeubicacion+"\\Report_Users.png" )
-
+            commandfile = 'dot -Tpng Report_Users.txt -o Report_Users.png'
+            start_file(commandfile)
+            path = 'Report_Users.png'
+            open_file(path)
+            
