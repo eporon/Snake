@@ -7,7 +7,9 @@ import time
 
 #Importacion de Estructuras para la utilizacion en el programa
 import Stack
+from Stack import Stack
 import Queue
+from Queue import Queue
 import curses
 import CircularLinkedList
 from CircularLinkedList import CircularLinkedList
@@ -20,17 +22,48 @@ from ModGrafico import print_menu,print_center,menu,print_users
 import bulkfile 
 from bulkfile import CargarArchivo
 
+#Importacion del Modulo para manejar el snake
+from curses import KEY_RIGHT, KEY_LEFT, KEY_UP, KEY_DOWN, A_BOLD, A_UNDERLINE
+from random import randint
+print(KEY_UP, KEY_RIGHT, KEY_DOWN, KEY_LEFT)
 
-#--------------------------------------------Estructuras a utilizar---------------------------------------------------
-listuser = CircularLinkedList()
+import Food
+from Food import Food
 
 
+#--------------------------------------------Scope de variables tipo EDD a utilizar---------------------------------------------------
+listuser = CircularLinkedList() #Lista para usuarios disponibles en el juego
+listscore = Stack() #Pila que manejara el puntaje de los usuarios
+listscoreBoard = Queue() #Cola Que maneja los ultimos 10 puntajes en el juego
+menu = ['1. Play', '2. ScoreBoard', '3. User Selection', '4. Reports', '5. Bulk Loading', '6.Exit'] 
 
+def playGame(stdscr):
+    key = KEY_RIGHT
+    score = 0
+    count = 0
+    food = Food()
+    stdscr.clear()
+    h, w = stdscr.getmaxyx()
+    print(h)
+    print(w)
+    stdscr.attron(A_BOLD)                                                            
+    stdscr.border(0)  
+    menustring ='Snake Reload'
+    stdscr.addstr(0, w//2 - len(menustring)//2, menustring)    
+    if food.type_food == 0:
+        stdscr.addstr(food.y_coordinate,food.x_coordinate, "*")
+    else:
+        stdscr.addstr(food.y_coordinate,food.x_coordinate, "+")    
+        stdscr.addstr(0, 10, 'Score: %d '%score)  
+        #stdscr.addstr(0,100, 'User: %s'%listuser.item.name)
+    stdscr.attroff(A_BOLD)
+    stdscr.refresh()
 
 def main(stdscr):
     global listuser 
-    curses.curs_set(0)
+    
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
+    curses.curs_set(0)
     current_row = 0
     #Imprime el menu en pantalla
     print_menu(stdscr, current_row)
@@ -45,7 +78,7 @@ def main(stdscr):
             current_row += 1
         elif key == curses.KEY_ENTER or key in [10, 13]:
             if(current_row == 0): #ITEM SELECCIONADO PARA JUGAR
-                pass
+                playGame(stdscr)
             if(current_row == 1): #ITEM SELECCIONADO PARA EL SCOREBOARD
                 pass
             if(current_row == 2): #ITEM SELECCIONADO PARA USER SELECTION
@@ -73,7 +106,7 @@ def main(stdscr):
                 break
         print_menu(stdscr, current_row) #Imprime el estado final del programa
 
-
+    
 
 '''
 --------------------------------------------------PROCESO DE EJECUCION DEL PROGRAMA-------------------------------------------------------
