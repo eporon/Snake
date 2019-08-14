@@ -1,0 +1,5 @@
+digraph{
+ node[shape = record,style=filled];rankdir = LR;label = "SCORE"; 
+
+	Stack[label="<fnull>| <f0>(56,2)|<f1>(52,12)|<f2>(36,13)|<f3>(28,10)|<f4>(42,24)|<f5>(21,10)|<f6>(54,19)|<f7>(51,25)|<f8>(12,19)"];
+	 }

@@ -44,8 +44,6 @@ class CircularLinkedList:
             self.first =aux
         self.linknode()
 
-
-
     def search(self,name): #Verifica si el usuario se encuentra en la lista
         aux = self.first
         while aux:
@@ -58,19 +56,19 @@ class CircularLinkedList:
 
     def add_last(self,name):  #Agrega el valor al final de la lista circular
         if self.is_Empty():
-            self.first = self.last = node(name=name)
+            self.first = self.last =self.item = node(name=name)
         else:
             aux = self.last
             self.last =aux.next =node(name =name)
             self.last.prior =aux
         self.linknode()
 
-    def linknode(self): #Une los nodos respecto 
+    def linknode(self): #Une los nodos respecto
         if self.first !=None:
             self.first.prior =self.last
             self.last.next =self.first
 
-    
+
     def startnode(self): #Imprime la lista desde el inicio
         aux = self.first
         while aux:
@@ -78,7 +76,7 @@ class CircularLinkedList:
             aux = aux.next
             if aux == self.first:
              break
-    
+
     def finishnode(self): #Imprime la lista desde el final
         aux = self.last
         while aux:
@@ -86,7 +84,7 @@ class CircularLinkedList:
             aux = aux.prior
             if aux == self.last:
              break
-    
+
     def deleteStart(self): #Elimina el nodo inicial
         if self.is_Empty():
             print("The data struct is empty")
@@ -112,10 +110,10 @@ class CircularLinkedList:
             f_output.write("digraph{\n node[shape = record,style=filled, color = lightgray];")
             f_output.write("label = \"Circular Linked List of Users\"; \n")
             f_output.write("\n")
-            
+
             aux = self.first
             while aux:
-                f_output.write("\t\t d%d[label=\"%s\"];\n"%(nodonum,aux.name))
+                f_output.write("\t\t d%d[label=\"{|%s|}\"];\n"%(nodonum,aux.name))
                 aux = aux.next
                 nodonum+=1
                 if aux == self.first:
@@ -131,11 +129,10 @@ class CircularLinkedList:
                      f_output.write("\t\t d%d->d%d[color =\"yellow1\"];\n"%(0,i))
                 else:
                     f_output.write("\t\t d%d->d%d[color =\"yellow1\"];\n"%(i,i+1))
-                    f_output.write("\t\t d%d->d%d[color =\"yellow1\"];\n"%(i+1,i))    
-            f_output.write("\t }")        
+                    f_output.write("\t\t d%d->d%d[color =\"yellow1\"];\n"%(i+1,i))
+            f_output.write("\t }")
             f_output.close()
             commandfile = 'dot -Tpng Report_Users.txt -o Report_Users.png'
             start_file(commandfile)
             path = 'Report_Users.png'
             open_file(path)
-            
